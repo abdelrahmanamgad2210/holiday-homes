@@ -1,0 +1,19 @@
+name: Deploy Laravel
+
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    create-deployment-artifacts:
+        name: Create Deployment Artifacts
+
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: build-nginx-docker-img              
+              run : docker build -f nginxdockerfile -t nginx-laravel:0.0.2  .
