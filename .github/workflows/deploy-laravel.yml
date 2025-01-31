@@ -15,12 +15,14 @@ jobs:
         steps:
             - uses: actions/checkout@v2
 
+
             - name: build docker image
-             run: docker build -f nginxdockerfile -t  laravel-app:1.0 .
+              run: docker build -f nginxdockerfile -t  laravel-app:1.0.0 .
 
             - name: push docker image
-              run: docker save hh-docker:0.0.2 -o hh-docker.tar
-                chmod 644 hh-docker.tar
+              run: |
+               docker save hh-docker:0.0.2 -o hh-docker.tar
+               chmod 644 hh-docker.tar 
 
 
 
