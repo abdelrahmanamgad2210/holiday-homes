@@ -24,9 +24,9 @@ jobs:
                docker save laravel-app:1.0.0 -o laravel-app.tar
                chmod 644 laravel-app.tar
 
-               - name: Copy nginx docker image to droplet
-               uses: appleboy/scp-action@v0.1.7
-               with:
+            - name: Copy nginx docker image to droplet
+              uses: appleboy/scp-action@v0.1.7
+              with:
                  host: ${{secrets.HOST}}
                  username: ${{Secrets.USERNAME}}
                  passphrase: ${{ Secrets.PASSPHRASE }}
