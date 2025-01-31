@@ -24,10 +24,6 @@ jobs:
                docker save laravel-app:1.0.0 -o laravel-app.tar
                chmod 644 laravel-app.tar
 
-            - name: setup ssh
-              run: |
-                echo "${{secrets.KEY}}" > ~/.ssh/id_rsa
-                chmod 600 ~/.ssh/id_rsa
             
 
             - name: Copy nginx docker image to droplet
