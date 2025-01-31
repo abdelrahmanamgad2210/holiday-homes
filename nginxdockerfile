@@ -1,0 +1,29 @@
+FROM nginx:alpine
+
+# Remove conflicting group and create laravel user/group
+RUN delgroup dialout && \
+    addgroup --system laravel && \
+    adduser -G laravel --system -D -s /bin/sh laravel
+
+# Update Nginx configuration
+RUN sed -i "s/user  nginx;/user laravel;/g" /etc/nginx/nginx.conf
+
+# Copy Nginx configuration
+ADD ./nginx/default.conf /etc/nginx/conf.d/
+
+# Set working directory
+WORKDIR /var/www/html
+
+# Copy application files and set ownership during copy
+COPY --chown=laravel:laravel . /var/www/html
+
+# Ensure proper permissions
+RUN mkdir -p /var/cache/nginx/client_temp && \
+    chown -R laravel:laravel /var/cache/nginx && \
+    chmod -R 755 /var/www/html
+
+# Expose necessary ports
+EXPOSE 80 443
+
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]
