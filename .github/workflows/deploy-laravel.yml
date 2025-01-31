@@ -21,7 +21,7 @@ jobs:
 
             - name: push docker image
               run: |
-               docker save laravel-app:1.0.0 -o hh-docker.tar
+               docker save laravel-app:1.0.0 -o laravel-app.tar
                chmod 644 laravel-app.tar
 
                - name: Copy nginx docker image to droplet
