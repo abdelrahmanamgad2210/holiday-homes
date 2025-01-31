@@ -35,6 +35,7 @@ jobs:
                  passphrase: ${{secrets.PASSPHRASE}}
                  source: laravel-app.tar
                  target: ~/images
+                 port: 22 
 
 
 
