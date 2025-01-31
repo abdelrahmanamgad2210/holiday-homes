@@ -23,14 +23,6 @@ jobs:
               run: |
                docker save laravel-app:1.0.0 -o laravel-app.tar
                chmod 644 laravel-app.tar
-
-            - name: Set up SSH key
-              run: |
-                 mkdir -p ~/.ssh
-                 echo "${{ secrets.KEY }}" > ~/.ssh/id_rsa
-                 chmod 600 ~/.ssh/id_rsa
-                 ssh-keyscan -H your_server_ip_or_domain >> ~/.ssh/known_hosts
-             
             
 
             - name: Copy nginx docker image to droplet
